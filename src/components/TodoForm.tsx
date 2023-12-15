@@ -1,13 +1,16 @@
 import React from 'react';
 import useInput from '../hooks/useInput';
 // import { useDispatch } from 'react-redux';
-import { EIsDone } from '../types/types';
-import { useTodos } from '../hooks/useTodos';
+import { EIsDone, TTodo } from '../types/types';
+// import { useTodos } from '../hooks/useTodos';
+import { __addTodos } from '../redux/modules/todosSlices';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../redux/config';
 // import { addTodo } from '../redux/modules/todosSlices';
 
 const TodoForm = () => {
-  // const dispatch = useDispatch();
-  const { addTodo } = useTodos();
+  const dispatch = useDispatch<AppDispatch>();
+  // const { addTodo } = useTodos();
 
   const [contents, setContents] = useInput();
 
@@ -26,8 +29,7 @@ const TodoForm = () => {
       isDone: EIsDone.UN_DONE
     };
 
-    addTodo(newTodo);
-    // dispatch(addTodo(newTodo));
+    dispatch(__addTodos({ newTodo }));
   };
 
   return (

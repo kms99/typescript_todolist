@@ -1,26 +1,22 @@
 import React from 'react';
 import { EIsDone, TTodo } from '../types/types';
-// import { useDispatch } from 'react-redux';
-import { useTodos } from '../hooks/useTodos';
-// import { deleteTodo, updateTodo } from '../redux/modules/todosSlices';
+import { useDispatch } from 'react-redux';
+import { __deleteTodos, __updateTodos } from '../redux/modules/todosSlices';
+import { AppDispatch } from '../redux/config';
 
 interface IProps {
   todo: TTodo;
 }
 
 const TodoItem = ({ todo }: IProps) => {
-  // const dispatch = useDispatch();
-
-  const { deleteTodo, updateTodo } = useTodos();
+  const dispatch = useDispatch<AppDispatch>();
 
   const updateBtnClickHandler = () => {
-    // dispatch(updateTodo(todo.id));
-    updateTodo(todo.id, todo.isDone ? EIsDone.UN_DONE : EIsDone.DONE);
+    dispatch(__updateTodos({ targetId: todo.id, changeDone: todo.isDone ? EIsDone.UN_DONE : EIsDone.DONE }));
   };
 
   const deleteBtnClickHandler = () => {
-    // dispatch(deleteTodo(todo.id));
-    deleteTodo(todo.id);
+    dispatch(__deleteTodos(todo.id));
   };
 
   return (
