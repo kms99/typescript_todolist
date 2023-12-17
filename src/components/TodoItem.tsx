@@ -1,30 +1,41 @@
 import React from 'react';
 import { EIsDone, TTodo } from '../types/types';
-import { __deleteTodos, __updateTodos } from '../redux/modules/todosSlices';
 import { useTodos } from '../hooks/useTodos';
+import * as St from './Todo.styled';
+import Button, { ButtonType } from './common/Button';
+import useAlert from '../hooks/useAlert';
 
 interface IProps {
   todo: TTodo;
 }
 
 const TodoItem = ({ todo }: IProps) => {
-  const { deleteHandler, updateHanler } = useTodos();
+  const { openConfirmHandler } = useAlert();
+  const { deleteHandler, updateHandler } = useTodos();
 
   const updateBtnClickHandler = () => {
-    updateHanler({ targetId: todo.id, changeDone: todo.isDone ? EIsDone.UN_DONE : EIsDone.DONE });
+    updateHandler({ targetId: todo.id, changeDone: todo.isDone ? EIsDone.UN_DONE : EIsDone.DONE });
   };
 
-  const deleteBtnClickHandler = () => {
+  const deleteBtnClickHandler = async () => {
+    const result = await openConfirmHandler({ title: '삭제', message: '정말로 삭제하시겠습니까?' });
+    if (!result) return;
     deleteHandler(todo.id);
   };
 
   return (
-    <li>
+    <St.ItemLi>
       <h2>{todo.title}</h2>
       <p>{todo.contents}</p>
-      <button onClick={deleteBtnClickHandler}>삭제하기</button>
-      <button onClick={updateBtnClickHandler}>{todo.isDone ? '취소하기' : '완료하기'}</button>
-    </li>
+      <section>
+        <Button clickHandler={deleteBtnClickHandler} text="삭제하기" type={ButtonType.empty} />
+        <Button
+          clickHandler={updateBtnClickHandler}
+          text={todo.isDone ? '취소하기' : '완료하기'}
+          type={ButtonType.fill}
+        />
+      </section>
+    </St.ItemLi>
   );
 };
 

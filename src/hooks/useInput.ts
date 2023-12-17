@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 
-type IUseInput = [value: string, changeValueHandler: (e: React.ChangeEvent<HTMLInputElement>) => void];
+type IUseInput = [
+  value: string,
+  changeValueHandler: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  resetValue: () => void
+];
 
 const useInput = (): IUseInput => {
   const [value, setValue] = useState(''); // 초기값 설정 시 자동 타입 설정
@@ -9,7 +13,11 @@ const useInput = (): IUseInput => {
     setValue(e.target.value);
   };
 
-  return [value, changeValueHandler];
+  const resetValue = () => {
+    setValue('');
+  };
+
+  return [value, changeValueHandler, resetValue];
 };
 
 export default useInput;

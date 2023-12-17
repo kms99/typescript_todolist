@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import toDoSlice from './modules/todosSlices';
+import AlertSlice from './modules/AlertSlice';
+
 const store = configureStore({
-  reducer: { toDoSlice }
+  reducer: { AlertSlice }
 });
 
 export type RootState = ReturnType<typeof store.getState>;

@@ -4,26 +4,26 @@ import { addTodoHandle, deleteTodoHandle, getTodoHandle, updateTodoHandle } from
 export const useTodos = () => {
   const queryClient = useQueryClient();
 
-  const { data: toDoData } = useQuery({
+  const { isLoading: toDoDataLoading, data: toDoData } = useQuery({
     queryKey: ['toDoData'],
     queryFn: getTodoHandle
   });
 
-  const addMutaion = useMutation({
+  const addMutation = useMutation({
     mutationFn: addTodoHandle,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['toDoData'] });
     }
   });
 
-  const deleteMutaion = useMutation({
+  const deleteMutation = useMutation({
     mutationFn: deleteTodoHandle,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['toDoData'] });
     }
   });
 
-  const updateMutaion = useMutation({
+  const updateMutation = useMutation({
     mutationFn: updateTodoHandle,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['toDoData'] });
@@ -32,8 +32,9 @@ export const useTodos = () => {
 
   return {
     toDoData,
-    addHandler: addMutaion.mutate,
-    deleteHandler: deleteMutaion.mutate,
-    updateHanler: updateMutaion.mutate
+    toDoDataLoading,
+    addHandler: addMutation.mutate,
+    deleteHandler: deleteMutation.mutate,
+    updateHandler: updateMutation.mutate
   };
 };

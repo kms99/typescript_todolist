@@ -1,13 +1,18 @@
 import React from 'react';
-import TodoForm from '../components/TodoForm';
 import TodoList from '../components/TodoList';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import * as St from '../components/Todo.styled';
 
 const Home = () => {
   return (
-    <div>
-      <TodoForm />
-      <TodoList />
-    </div>
+    <>
+      <St.MainWrapper>
+        <Header />
+        <TodoList />
+      </St.MainWrapper>
+      <Footer />
+    </>
   );
 };
 
