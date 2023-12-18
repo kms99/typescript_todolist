@@ -1,8 +1,13 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { addTodoHandle, deleteTodoHandle, getTodoHandle, updateTodoHandle } from '../axios/todos';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../redux/config';
+import { setLoading } from '../redux/modules/LoadingSlice';
 
 export const useTodos = () => {
   const queryClient = useQueryClient();
+  const dispatch = useDispatch<AppDispatch>();
 
   const { isLoading: toDoDataLoading, data: toDoData } = useQuery({
     queryKey: ['toDoData'],
@@ -30,11 +35,30 @@ export const useTodos = () => {
     }
   });
 
+  useEffect(() => {
+    dispatch(setLoading(addMutation.isPending));
+  }, [addMutation.isPending, dispatch]);
+
+  useEffect(() => {
+    dispatch(setLoading(deleteMutation.isPending));
+  }, [deleteMutation.isPending, dispatch]);
+
+  useEffect(() => {
+    dispatch(setLoading(updateMutation.isPending));
+  }, [updateMutation.isPending, dispatch]);
+
+  useEffect(() => {
+    dispatch(setLoading(toDoDataLoading));
+  }, [toDoDataLoading, dispatch]);
+
   return {
     toDoData,
-    toDoDataLoading,
     addHandler: addMutation.mutate,
     deleteHandler: deleteMutation.mutate,
-    updateHandler: updateMutation.mutate
+    updateHandler: updateMutation.mutate,
+    toDoDataLoading,
+    addPending: addMutation.isPending,
+    deletePending: deleteMutation.isPending,
+    updatePending: updateMutation.isPending
   };
 };

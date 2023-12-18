@@ -1,5 +1,6 @@
 import TodoBase from '../api/axios';
-import { EIsDone, TTodo } from '../types/types';
+import { EIsDone } from '../types/enum';
+import { TTodo } from '../types/types';
 
 export interface IUpdateArg {
   targetId: number;

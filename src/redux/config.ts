@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import AlertSlice from './modules/AlertSlice';
+import LoadingSlice from './modules/LoadingSlice';
 
 const store = configureStore({
-  reducer: { AlertSlice }
+  reducer: { AlertSlice, LoadingSlice }
 });
 
 export type RootState = ReturnType<typeof store.getState>;

@@ -1,19 +1,18 @@
 import React from 'react';
 import useInput from '../hooks/useInput';
-import { EIsDone } from '../types/types';
 import { useTodos } from '../hooks/useTodos';
-import { OpenModal } from './Header';
 import * as St from './Todo.styled';
 import Input from './common/Input';
-import Button, { ButtonType } from './common/Button';
+import Button from './common/Button';
 import useAlert from '../hooks/useAlert';
+import { ButtonType, EIsDone, OpenModal } from '../types/enum';
 
-interface FromProps {
+interface FormProps {
   isOpen: OpenModal;
   setOpenInputForm: (value: OpenModal) => void;
 }
 
-const TodoForm = ({ isOpen, setOpenInputForm }: FromProps) => {
+const TodoForm = ({ isOpen, setOpenInputForm }: FormProps) => {
   const { openAlertHandler } = useAlert();
 
   const { addHandler } = useTodos();

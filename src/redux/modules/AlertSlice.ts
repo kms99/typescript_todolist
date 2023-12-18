@@ -1,13 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { AlertType } from '../../types/enum';
 
-export enum alertType {
-  alert,
-  confirm
+interface AlertPayloadType {
+  message: string;
+  title: string;
 }
 
 const initialState = {
   isOpen: false,
-  type: alertType.alert,
+  type: AlertType.alert,
   title: '',
   message: '',
   result: false
@@ -21,15 +22,15 @@ const AlertSlice = createSlice({
       state.isOpen = false;
       state.result = false;
     },
-    openConfirm: (state, action) => {
+    openConfirm: (state, action: PayloadAction<AlertPayloadType>) => {
       state.isOpen = true;
-      state.type = alertType.confirm;
+      state.type = AlertType.confirm;
       state.title = action.payload.title;
       state.message = action.payload.message;
     },
-    openAlert: (state, action) => {
+    openAlert: (state, action: PayloadAction<AlertPayloadType>) => {
       state.isOpen = true;
-      state.type = alertType.alert;
+      state.type = AlertType.alert;
       state.title = action.payload.title;
       state.message = action.payload.message;
     },

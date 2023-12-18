@@ -1,9 +1,10 @@
 import React from 'react';
-import { EIsDone, TTodo } from '../types/types';
+import { TTodo } from '../types/types';
 import { useTodos } from '../hooks/useTodos';
 import * as St from './Todo.styled';
-import Button, { ButtonType } from './common/Button';
+import Button from './common/Button';
 import useAlert from '../hooks/useAlert';
+import { ButtonType, EIsDone } from '../types/enum';
 
 interface IProps {
   todo: TTodo;

@@ -1,9 +1,10 @@
 import React from 'react';
-import Button, { ButtonType } from '../Button';
+import Button from '../Button';
 import * as St from './alertModal.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../redux/config';
-import { alertType, closeAlert, confirmFalse, confirmTrue } from '../../../redux/modules/AlertSlice';
+import { closeAlert, confirmFalse, confirmTrue } from '../../../redux/modules/AlertSlice';
+import { AlertType, ButtonType } from '../../../types/enum';
 
 const AlertModalMainContainer = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -24,7 +25,7 @@ const AlertModalMainContainer = () => {
       <h1>{alertInfo.title}</h1>
       <p>{alertInfo.message}</p>
       <section>
-        {alertInfo.type === alertType.confirm && (
+        {alertInfo.type === AlertType.confirm && (
           <Button text="취소" type={ButtonType.empty} clickHandler={cancelBtnClickHandler} />
         )}
         <Button text="확인" type={ButtonType.fill} clickHandler={confirmBtnClickHandler} />

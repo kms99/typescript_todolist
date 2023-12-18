@@ -3,12 +3,12 @@ import { TTodo } from '../types/types';
 import { useTodos } from '../hooks/useTodos';
 import TodoListSection from './TodoListSection';
 
-const TodoList = () => {
-  interface FilterTodoType {
-    doneList: TTodo[];
-    notDoneList: TTodo[];
-  }
+interface FilterTodoType {
+  doneList: TTodo[];
+  notDoneList: TTodo[];
+}
 
+const TodoList = () => {
   const { toDoData } = useTodos();
 
   const filteredToDos: FilterTodoType | undefined = toDoData?.reduce(

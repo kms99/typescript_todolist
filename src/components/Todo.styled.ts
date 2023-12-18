@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import { OpenModal } from './Header';
-import { ButtonType } from './common/Button';
+import { ButtonType, OpenModal } from '../types/enum';
 
 const MainWrapper = styled.div`
   max-width: 120rem;
@@ -207,6 +206,18 @@ const NoListH3 = styled.h3`
   margin-left: 1rem;
 `;
 
+const ProgressBackDrop = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export {
   MainWrapper,
   Header,
@@ -218,5 +229,6 @@ export {
   ListSectionTitle,
   ListSection,
   NoListH3,
-  Footer
+  Footer,
+  ProgressBackDrop
 };

@@ -7,12 +7,10 @@ const BackDropContainer = styled.div<{ $isOpen: boolean }>`
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(5px);
   z-index: ${(props) => (props.$isOpen ? 10 : -10)};
   opacity: ${(props) => (props.$isOpen ? 1 : 0)};
-  transition:
-    z-index 0.3s ease-in,
-    opacity 0.3s ease-in;
+  transition: 0.3s;
 `;
 
 const AlertModalContainer = styled.div<{ $isOpen: boolean }>`
@@ -20,7 +18,7 @@ const AlertModalContainer = styled.div<{ $isOpen: boolean }>`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  transition: 0.3s ease-in;
+  transition: 0.3s;
   z-index: ${(props) => (props.$isOpen ? 10 : -10)};
   opacity: ${(props) => (props.$isOpen ? 1 : 0)};
   display: flex;
