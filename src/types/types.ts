@@ -1,11 +1,8 @@
-export type TTodo = {
-    id : number;
-    title : string;
-    contents : string;
-    isDone : EIsDone;
-}
+import { EIsDone } from './enum';
 
-export enum EIsDone {
-    UN_DONE,
-    DONE
-}
+export type TTodo = {
+  id: number;
+  title: string;
+  contents: string;
+  isDone: EIsDone;
+};

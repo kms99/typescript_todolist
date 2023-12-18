@@ -1,3 +1,28 @@
 {
-  "todos": []
+  "todos": [
+    {
+      "id": 1702859128790,
+      "title": "TIL 작성",
+      "contents": "밀린 TIL 작성하기",
+      "isDone": 0
+    },
+    {
+      "id": 1702859203385,
+      "title": "과제 제출",
+      "contents": "TypeScript TodoList 제출하기",
+      "isDone": 0
+    },
+    {
+      "id": 1702859242249,
+      "title": "강의듣기",
+      "contents": "next js 강의 들어보기",
+      "isDone": 0
+    },
+    {
+      "id": 1702859260563,
+      "title": "책 읽기",
+      "contents": "typeScript 책 읽기",
+      "isDone": 0
+    }
+  ]
 }
